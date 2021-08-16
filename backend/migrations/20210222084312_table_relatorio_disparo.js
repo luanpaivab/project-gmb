@@ -1,0 +1,58 @@
+exports.up = function (knex, Promise) {
+  return knex.schema.createTable("relatorio_disparo", (table) => {
+    table.increments("id").primary();
+    table.datetime("dth_sist");
+    table.date("dt_ocorrencia");
+    table.time("hr_disparo");
+    table.string("perimetro");
+    table.string("relator");
+    table.string("matric_relator");
+    table.string("funcao_relator");
+    table.string("lotacao_relator");
+    table.string("registro_geral");
+    table.string("cpf_relator");
+    table.string("arma_utilizada");
+    table.string("reg_sinarm");
+    table.string("marca_arma");
+    table.string("num_serie_arma");
+    table.string("tipo_municao");
+    table.string("lote_municao");
+    table.string("qtd_municao");
+    table.string("testemunhaUm");
+    table.string("doc_testUm");
+    table.string("end_testeUm");
+    table.string("complemento_endTestUm");
+    table.string("bairro_testUm");
+    table.string("fone_testeUm");
+    table.string("testemunhaDois");
+    table.string("doc_testDois");
+    table.string("end_testeDois");
+    table.string("complemento_endTestDois");
+    table.string("bairro_testDois");
+    table.string("fone_testeDois");
+    table.text("relato");
+    table.string("coordenador");
+    table.string("inspetoria");
+    table.string("superior_servico");
+    table.string("estado");
+    table.string("cidade");
+    table.string("endereco");
+    table.string("bairro");
+    table.string("numero");
+    table.string("cep");
+    table.string("latitude");
+    table.string("longitude");
+    table.string("localizacao_usuario");
+    table.string("idFoto");
+    table.integer("id_user_register").unsigned();
+    table.foreign("id_user_register").references("id").inTable("users");
+    table.integer("id_administrativo").unsigned();
+    table.foreign("id_administrativo").references("id").inTable("users");
+    table.uuid("state").defaultTo("");
+    table.text("state_description").defaultTo("");
+  });
+};
+
+exports.down = function (knex, Promise) {
+  return knex.schema.dropTable("relatorio_disparo");
+};

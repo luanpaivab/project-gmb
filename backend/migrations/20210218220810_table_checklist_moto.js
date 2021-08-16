@@ -1,0 +1,110 @@
+exports.up = function (knex, Promise) {
+    return knex.schema.createTable("checklist_moto", (table) => {
+      table.increments('id').primary();
+      table.datetime("dth_sist");
+      table.date("dt_serv");
+      table.string("inspetoria");
+      table.string("motorista");
+      table.string("prefixo_moto");
+      table.string("placa_moto");
+      table.time("hr_saida");
+      table.time("hr_chegada");
+      table.uuid("odometro_saida");
+      table.uuid("odometro_chegada");
+      table.uuid("odometro_total");
+      table.string("combusti_receb");
+      table.string("combusti_entreg");
+      table.string("tipo_combustivel");
+      table.string("qtd_litros");
+      table.string("km_abastec");
+      table.time("hr_abastec");
+      
+      table.uuid("afogador");
+      table.uuid("amortecedores");
+      table.uuid("aparador_linha");
+      table.uuid("banco");
+      table.uuid("bateria");
+      table.uuid("bau");
+      table.uuid("buzina");
+      table.uuid("cabo_embreagem");
+      table.uuid("cabo_vela");
+      table.uuid("cabo_acelerador");
+      table.uuid("cabo_velocimetro");
+      table.uuid("cabos_freios");
+      table.uuid("calibragem_pneu");
+      table.uuid("capa_moto");
+      table.uuid("carenagens");
+      table.uuid("cavalete_central");
+      table.uuid("cavalete_lat");
+      table.uuid("chave_geral_moto");
+      table.uuid("descarga");
+      table.uuid("disco_freio");
+      table.uuid("embreagem");
+      table.uuid("espelhos_retrovisores");
+      table.uuid("estado_coroa");
+      table.uuid("estado_corrente");
+      table.uuid("estado_pinhao");
+      table.uuid("farol_alto");
+      table.uuid("farol_baixo");
+      table.uuid("fluidos_freios");
+      table.uuid("gps");
+      table.uuid("giroflex");
+      table.uuid("interruptor_emerg");
+      table.uuid("interruptor_farol");
+      table.uuid("interruptor_pisca");
+      table.uuid("jances");
+      table.uuid("lanterna");
+      table.uuid("lonas_freio");
+      table.uuid("luz_placa");
+      table.uuid("luz_freio");
+      table.uuid("luz_emergencia");
+      table.uuid("luzes_painel");
+      table.uuid("luzes_estroboscopicas");
+      table.uuid("manete_embreagem");
+      table.uuid("manete_freio");
+      table.uuid("motor");
+      table.uuid("nv_combustivel");
+      table.uuid("nv_fluido_bateria");
+      table.uuid("nv_fluido_freio");
+      table.uuid("nv_liq_radiador");
+      table.uuid("nv_oleo_motor");
+      table.uuid("nv_fluido_embreagem");
+      table.uuid("partida_eletrica");
+      table.uuid("pastilhas_freio");
+      table.uuid("pedal_partida");
+      table.uuid("pedais_garupa");
+      table.uuid("piscas");
+      table.uuid("pneus");
+      table.uuid("radiador");
+      table.uuid("sirene");
+      table.uuid("tambor_freio");
+      table.uuid("tampas");
+      table.uuid("tanque");
+      table.uuid("tensor_corrente");
+      table.uuid("torneira_combustivel");
+      table.uuid("varao_freio_tras");
+      table.uuid("vela");
+      table.uuid("velocimetro");
+
+      table.text("relato_checklist");
+      table.text("fatos_observados");
+      table.date("dt_entreg_moto");
+      table.string("superior_serv");
+
+      table.integer("id_assmotorista").unsigned();
+      table.foreign("id_assmotorista").references("id").inTable("users");
+      table.integer("id_user_register").unsigned();
+      table.foreign("id_user_register").references("id").inTable("users");
+      table.integer("id_administrativo").unsigned();
+      table.foreign("id_administrativo").references("id").inTable("users");
+      table.uuid("state").defaultTo("");
+      table.text("state_description").defaultTo("");
+      
+    });
+  };
+  
+  exports.down = function (knex, Promise) {
+    return knex.schema.dropTable("checklist_moto");
+  };
+
+

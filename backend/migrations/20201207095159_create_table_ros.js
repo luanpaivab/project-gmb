@@ -1,0 +1,86 @@
+exports.up = function (knex, Promise) {
+  return knex.schema.createTable("registro_ocorrencia", (table) => {
+    table.increments("id").primary();
+    table.datetime("dth_sistema");
+    table.date("dt_ocorrencia");
+    table.string("meio_chamado");
+    table.time("hr_chamado");
+    table.time("hr_inicio");
+    table.time("hr_termino");
+    table.uuid("cod_ocorrencia");
+    table.string("natureza");
+    table.string("solicitante");
+    table.uuid("doc_solicitante");
+    table.uuid("fone_solicitante");
+    table.string("autorPres");
+    table.uuid("doc_autor");
+    table.string("endAutor");
+    table.uuid("genAutor");
+    table.string("vitima");
+    table.uuid("doc_vitima");
+    table.string("endVitima");
+    table.uuid("fone_vitima");
+    table.string("local_autor");
+    table.string("local_vitima");
+    table.string("apoio_recebido");
+    table.text("desc_apoio");
+
+    table.uuid("bo_pc");
+    table.uuid("tco_pc");
+    table.uuid("aut_entrega_pc");
+    table.uuid("auto_apreensao_pc");
+    table.uuid("auto_entrega_gmb");
+    table.uuid("auto_apreensao_gmb");
+    table.uuid("outros_doc");
+    table.text("tipo_doc");
+    table.text("prod_apreendido");
+    table.text("encaminham_obj");
+
+    table.string("testemunha1");
+    table.uuid("doc_test1");
+    table.string("end_test1");
+    table.string("bairro_test1");
+    table.uuid("fone_teste1");
+    table.string("testemunha2");
+    table.uuid("doc_test2");
+    table.string("end_test2");
+    table.string("bairro_test2");
+    table.uuid("fone_teste2");
+    table.string("gm_part1");
+    table.string("gm_part2");
+    table.string("gm_part3");
+    table.string("gm_part4");
+    table.string("gm_part5");
+    table.string("gm_part6");
+    table.text("historico");
+
+    table.string("condutor");
+    table.string("matricula_condutor");
+    table.uuid("placa_condutor");
+    table.string("lotacao_condutor");
+    table.string("ass_condutor");
+    table.string("coordenador");
+    table.string("inspetoria");
+    table.string("superior_serv");
+    table.string("estado");
+    table.string("cidade");
+    table.string("endereco");
+    table.string("bairro");
+    table.string("numero");
+    table.string("cep");
+    table.string("latitude");
+    table.string("longitude");
+    table.string("localizacao_usuario");
+    table.string("id_foto");
+    table.integer("id_user_register").unsigned();
+    table.foreign("id_user_register").references("id").inTable("users");
+    table.integer("id_administrativo").unsigned();
+    table.foreign("id_administrativo").references("id").inTable("users");
+    table.uuid("state").defaultTo("");
+    table.text("state_description").defaultTo("");
+  });
+};
+
+exports.down = function (knex, Promise) {
+  return knex.schema.dropTable("registro_ocorrencia");
+};

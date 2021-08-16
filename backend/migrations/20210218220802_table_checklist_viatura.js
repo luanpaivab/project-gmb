@@ -1,0 +1,97 @@
+exports.up = function (knex, Promise) {
+    return knex.schema.createTable("checklist", (table) => {
+      table.increments('id').primary();
+      table.datetime("dth_sist");
+      table.date("dt_ocor");
+      table.uuid("inspetoria");
+      table.string("motorista");
+      table.string("encarregado");
+      table.string("auxiliar_vtr");
+      table.uuid("prefixo_vtr");
+      table.uuid("placa_vtr");
+      table.time("hr_saida");
+      table.time("hr_chegada");
+      table.uuid("odometro_saida");
+      table.uuid("odometro_chegada");
+      table.uuid("odometro_total");
+      table.uuid("combustivel_recebido");
+      table.string("tipo_combustivel");
+      table.string("qtd_litros");
+      table.string("km_abastec");
+      table.time("hr_abastecimento");
+      
+      table.uuid("acendedor");
+      table.uuid("alarme");
+      table.uuid("antena");
+      table.uuid("arCondicionado");
+      table.uuid("bancos_encosto");
+      table.uuid("buzina");
+      table.uuid("chave_roda");
+      table.uuid("cinto_seguranca");
+      table.uuid("desembacador");
+      table.uuid("embreagem");
+      table.uuid("extindor_incendio");
+      table.uuid("farol_alto");
+      table.uuid("farol_baixo");
+      table.uuid("farol_minimo");
+      table.uuid("fechamento_janelas");
+      table.uuid("freios_maos");
+      table.uuid("freios_pe");
+      table.uuid("giroflex");
+      table.uuid("gps");
+      table.uuid("lataria");
+      table.uuid("limp_p_brisa_diant");
+      table.uuid("limp_p_brisa_tras");
+      table.uuid("luz_placa");
+      table.uuid("luz_freio");
+      table.uuid("luz_re");
+      table.uuid("luz_interna");
+      table.uuid("luzes_painel");
+      table.uuid("macaco");
+      table.uuid("nv_agua_radiador");
+      table.uuid("nv_oleo_freio");
+      table.uuid("nv_oleo_motor");
+      table.uuid("odometro");
+      table.uuid("para_brisa");
+      table.uuid("para_choq_diant");
+      table.uuid("para_choq_tras");
+      table.uuid("pedais");
+      table.uuid("piscas_alerta");
+      table.uuid("estepe");
+      table.uuid("estado_pneus");
+      table.uuid("portas_travas");
+      table.uuid("quebra_sol");
+      table.uuid("radio");
+      table.uuid("retrovisor_diant");
+      table.uuid("retrovisor_tras");
+      table.uuid("retrovisor_interno");
+      table.uuid("seta_direita");
+      table.uuid("seta_esquerda");
+      table.uuid("sirene");
+      table.uuid("tapetes");
+      table.uuid("triangulo_sinal");
+      table.uuid("velocimetro");
+      table.uuid("ventilador");
+      table.uuid("vidro_janelas");
+
+      table.text("citar_checklist");
+      table.text("fatos_observados");
+      table.date("data_entrega");
+      table.string("coordenador");
+      table.string("superior_servico");
+
+      table.integer("id_assmotorista").unsigned();
+      table.foreign("id_assmotorista").references("id").inTable("users");
+      table.integer("id_user_register").unsigned();
+      table.foreign("id_user_register").references("id").inTable("users");
+      table.integer("id_administrativo").unsigned();
+      table.foreign("id_administrativo").references("id").inTable("users");
+      table.uuid("state").defaultTo("");
+      table.text("state_description").defaultTo("");
+      
+    });
+  };
+  
+  exports.down = function (knex, Promise) {
+    return knex.schema.dropTable("checklist");
+  };
